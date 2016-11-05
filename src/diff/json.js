@@ -11,7 +11,7 @@ jsonDiff.useLongestToken = true;
 
 jsonDiff.tokenize = lineDiff.tokenize;
 jsonDiff.castInput = function(value) {
-  return typeof value === 'string' ? value : JSON.stringify(canonicalize(value), undefined, '  ');
+  return typeof value === 'string' ? value : JSON.stringify(canonicalize(value), function(k, v) { if (v === undefined) { return null; } return v; }, '  ');
 };
 jsonDiff.equals = function(left, right) {
   return Diff.prototype.equals(left.replace(/,([\r\n])/g, '$1'), right.replace(/,([\r\n])/g, '$1'));

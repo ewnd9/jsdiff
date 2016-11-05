@@ -64,7 +64,9 @@ describe('diff/json', function() {
         {a: 123, b: 456, c: undefined},
         {a: 123, b: 456}
       )).to.eql([
-        { count: 4, value: '{\n  "a": 123,\n  "b": 456\n}' }
+        { count: 3, value: '{\n  "a": 123,\n  "b": 456,\n' },
+        { count: 1, value: '  "c": null\n', added: undefined, removed: true },
+        { count: 1, value: '}' }
       ]);
     });
 
